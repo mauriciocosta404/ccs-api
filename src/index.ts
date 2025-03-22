@@ -1,11 +1,14 @@
 import Fastify from "fastify";
-import membroRoutes from "./presentation/routes/membroRoutes";
+import userRoutes from "./presentation/routes/user";
+import { errorHandler } from "./shared/middlewares/errorHandler";
 
 const fastify = Fastify({
   logger: true, 
 });
 
-fastify.register(membroRoutes, { prefix: "/api" });
+fastify.register(userRoutes, { prefix: "/api" });
+
+fastify.setErrorHandler(errorHandler);
 
 const start = async () => {
   try {
